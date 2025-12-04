@@ -1053,17 +1053,3 @@ INSERT INTO member (id, gym_id, first_name, last_name, email, phone_number, date
 (991, 20, 'Edward', 'Robinson', 'edwardrobinson@icloud.com', '987-654-9323', '1981-03-14', '2025-11-28', 'Basic', 'Stress Relief', '2025-10-21', 'Active', 'Climbing Wall'),
 (992, 20, 'Jacob', 'Ramirez', 'jramirez@yahoo.com', '430-831-4826', '1994-12-30', '2024-09-05', 'Premium', 'Muscle Gain', '2025-11-04', 'Active', 'Squat Rack');
 
--- Verification queries for my member dataset
--- makes sure the data loads correctly with, also automatic on run
-
--- Total members
-SELECT COUNT(*) as total_members FROM member;
-
--- Members per gym
-SELECT gym_id, COUNT(*) as member_count FROM member GROUP BY gym_id ORDER BY gym_id;
-
--- Membership type distribution
-SELECT membership_type, COUNT(*) as count FROM member GROUP BY membership_type;
-
--- Membership status distribution
-SELECT membership_status, COUNT(*) as count FROM member GROUP BY membership_status;
