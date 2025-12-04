@@ -1,4 +1,7 @@
-INSERT INTO member (id, gym_id, first_name, last_name, email, phone_number, date_of_birth, join_date, membership_type, fitness_goal, last_check_in_date, membership_status, favorite equipment) VALUES
+-- 20 gyms with ~50 members eachI
+
+
+NSERT INTO member (id, gym_id, first_name, last_name, email, phone_number, date_of_birth, join_date, membership_type, fitness_goal, last_check_in_date, membership_status, favorite equipment) VALUES
 
 (1, 1, 'Jennifer', 'Thompson', 'jennifer354@gmail.com', '376-501-4507', '2001-07-14', '2023-05-21', 'Premium', 'Muscle Gain', NULL, 'Active', NULL),
 (2, 1, 'Karen', 'Flores', 'karenflores@gmail.com', '829-846-9144', '1994-02-05', '2024-12-19', 'Basic', 'Athletic Performance', '2025-11-02', 'Active', 'Functional Training'),
@@ -1049,3 +1052,18 @@ INSERT INTO member (id, gym_id, first_name, last_name, email, phone_number, date
 (990, 20, 'Melissa', 'Martin', 'melissa.martin@hotmail.com', '915-885-7755', '2006-02-20', '2023-07-08', 'Basic', 'Muscle Gain', '2025-10-22', 'Active', NULL),
 (991, 20, 'Edward', 'Robinson', 'edwardrobinson@icloud.com', '987-654-9323', '1981-03-14', '2025-11-28', 'Basic', 'Stress Relief', '2025-10-21', 'Active', 'Climbing Wall'),
 (992, 20, 'Jacob', 'Ramirez', 'jramirez@yahoo.com', '430-831-4826', '1994-12-30', '2024-09-05', 'Premium', 'Muscle Gain', '2025-11-04', 'Active', 'Squat Rack');
+
+-- Verification queries for my member dataset
+-- makes sure the data loads correctly with, also automatic on run
+
+-- Total members
+SELECT COUNT(*) as total_members FROM member;
+
+-- Members per gym
+SELECT gym_id, COUNT(*) as member_count FROM member GROUP BY gym_id ORDER BY gym_id;
+
+-- Membership type distribution
+SELECT membership_type, COUNT(*) as count FROM member GROUP BY membership_type;
+
+-- Membership status distribution
+SELECT membership_status, COUNT(*) as count FROM member GROUP BY membership_status;

@@ -31,3 +31,31 @@ INSERT INTO gym (id, name, address, city, state, phone_number, operating_hours, 
 (18, 'Barry''s Bootcamp', '8570 W Sunset Blvd', 'West Hollywood', 'CA', '310-555-1818', '5am-9pm', 40, 'Boutique', 199.00),
 (19, 'Orangetheory Fitness', '1428 Brickell Ave', 'Miami', 'FL', '305-555-1919', '5am-9pm', 50, 'Boutique', 159.00),
 (20, 'SoulCycle', '103 Warren St', 'New York', 'NY', '212-555-2020', '6am-9pm', 60, 'Boutique', 185.00);
+
+
+-- My automatic "gym" Verification Queries 
+-- checks if my tables/data load correctly on run
+
+-- Total gyms 
+SELECT COUNT(*) as total_gyms FROM gym;
+
+-- Gyms by type 
+SELECT gym_type, COUNT(*) as count
+FROM gym
+GROUP by gym_type
+ORDER BY count DESC;
+
+-- Gyms by state
+SELECT sate, COUNT(*) as count
+FROM gym
+GROUP BY state
+ORDER BY count DESC;
+
+-- Average monthly rate by gym type
+Select gym_type
+    ROUND(AVG(monthly_rate), 2) as avg_rate,
+    MIN(monthly_rate) as min_rate,
+    MAX(monthly_rate) as max_rate
+FROM gym
+GROUP BY gym type
+ORDER BY avg_rate DESC;
