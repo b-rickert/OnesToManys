@@ -24,8 +24,15 @@ public class GymController {
         return gymRepository.findAll();
     } 
 
+    @GetMapping("/{id}")
+    public Gym getGymById(@PathVariable Long id) {
+        return gymRepository.findById(id).orElse(null);
+    }
+
     @GetMapping("/{id}/members")
     public List<Member> getMembersByGymId(@PathVariable Long id) {
         return memberRepository.findByGymId(id);
     }
+
+   
 }
