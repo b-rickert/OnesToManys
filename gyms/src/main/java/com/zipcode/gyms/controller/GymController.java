@@ -10,7 +10,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/gyms")
 public class GymController {
+
     @Autowired
     private GymRepository gymRepository;
 
+    @GetMapping
+    public List<Gym> getAllGyms() {
+        return gymRepository.findAll();
+    }
 }
