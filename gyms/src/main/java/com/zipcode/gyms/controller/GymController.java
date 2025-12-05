@@ -1,7 +1,9 @@
 package com.zipcode.gyms.controller;
 
 import com.zipcode.gyms.entity.Gym;
+import com.zipcode.gyms.entity.Member;
 import com.zipcode.gyms.repository.GymRepository;
+import com.zipcode.gyms.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,8 +16,16 @@ public class GymController {
     @Autowired
     private GymRepository gymRepository;
 
+    @Autowired
+    private MemberRepository memberRepository;
+
     @GetMapping
     public List<Gym> getAllGyms() {
         return gymRepository.findAll();
+    } 
+
+    @GetMapping("/{id}/members")
+    public List<Member> getMembersByGymId(@PathVariable Long id) {
+        return memberRepository.findByGymId(id);
     }
 }
