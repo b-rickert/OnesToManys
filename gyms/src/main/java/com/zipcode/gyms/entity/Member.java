@@ -29,10 +29,10 @@ public class Member {
     @Column(name = "phone_number", length = 20)
     private String phoneNumber;
 
-    @Column(name = "date_of_birth", nullable = false)
+    @Column(name = "date_of_birth", nullable = false, columnDefinition = "TEXT")
     private LocalDate dateOfBirth;
 
-    @Column(name = "join_date", nullable = false)
+    @Column(name = "join_date", nullable = false, columnDefinition = "TEXT")
     private LocalDate joinDate;
 
     @Column(name = "membership_type", nullable = false, length = 50)
@@ -41,7 +41,7 @@ public class Member {
     @Column(name = "fitness_goal", length = 100)
     private String fitnessGoal;
 
-    @Column(name = "last_check_in_date")
+    @Column(name = "last_check_in_date", nullable = true, columnDefinition = "TEXT")
     private LocalDate lastCheckInDate;
 
     @Column(name = "membership_status", nullable = false, length = 20)
