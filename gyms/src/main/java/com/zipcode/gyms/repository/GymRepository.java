@@ -5,6 +5,10 @@ import org.springframework.stereotype.Repository;
 
 import com.zipcode.gyms.entity.Gym;
 
+
+// GymRepository handles all database operations for Gym
+// extends JpaRepository which allows me to utilize CRUD without writing each method individually
+// JpaResository includes finaAll(), findById(), save(), delete(), ect.
 @Repository
 public interface GymRepository extends JpaRepository<Gym, Long> {
 

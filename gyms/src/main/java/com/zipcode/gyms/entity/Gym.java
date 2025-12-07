@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 import java.math.BigDecimal;
 
+
+// Gym entity maps to the "gym" table in the database
+// @Data line is from Lombok and auto-generates all the getters/setters so I do less typing
 @Entity
 @Table(name = "gym")
 @Data

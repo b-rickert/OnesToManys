@@ -9,13 +9,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+// Same thing as gym controller, tells spring this handles HTTP requests and returns JSON
 @RestController
+
+// All endpoints here start with /api/members
 @RequestMapping("/api/members")
 public class MemberController {
 
+    // Spring injects the repository so I can query the database
     @Autowired
     private MemberRepository memberRepository;
 
+    // GET /api/members and returns all 922 members
+    // pretty straightforward, just dumps the whole member table
     @GetMapping
     public List<Member> getAllMembers() {
         return memberRepository.findAll();

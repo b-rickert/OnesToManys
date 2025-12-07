@@ -2,8 +2,9 @@ package com.zipcode.gyms.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import java.time.LocalDate;
 
+// Member entity maps to the "member" table
+// Represents indivual gym members with their details
 @Entity
 @Table(name = "member")
 @Data
@@ -14,6 +15,7 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // this is my foreign key and links this member to a gym (my "many" side to one-to-many)
     @Column(name = "gym_id")
     private Long gymId;
 
@@ -41,6 +43,7 @@ public class Member {
     @Column(name = "fitness_goal", length = 100)
     private String fitnessGoal;
 
+    // nullable set to true in the case that new members may have not checked in yet
     @Column(name = "last_check_in_date", nullable = true, columnDefinition = "TEXT")
     private String lastCheckInDate;
 
