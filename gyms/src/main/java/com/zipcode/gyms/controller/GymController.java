@@ -46,5 +46,15 @@ public class GymController {
         return memberRepository.findByGymId(id);
     }
 
+    // POST /api/gyms (creates a new gym)
+    // @RequestBody takes the JSON from the request and converts it to a Gym object
+    // USE curl -X POST http://localhost:8080/api/gyms \
+    // -H "Content-Type: application/json" \
+    // -d '{"name":"Quick Gym","city":"Newark","state":"DE"}' | jq
+    @PostMapping
+    public Gym creatGym(@RequestBody Gym gym) {
+        return gymRepository.save(gym);
+    }
+
    
 }

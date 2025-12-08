@@ -26,5 +26,7 @@ public class MemberController {
     public List<Member> getAllMembers() {
         return memberRepository.findAll();
     }
+
+    
     
 }
