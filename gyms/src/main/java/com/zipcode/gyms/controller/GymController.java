@@ -56,12 +56,19 @@ public class GymController {
         return gymRepository.save(gym);
     }
 
-    //PUT api/gyms/21 - updates gym with id=21
+    // PUT api/gyms/21 - updates gym with id=21
     // takes the new gym data from the request body and saves it
     @PutMapping("/{id}")
     public Gym updateGym(@PathVariable Long id, @RequestBody Gym gym) {
         gym.setId(id);   // makes sure we are updating the correct gym ID
         return gymRepository.save(gym);      // save() works for both create AND update
+    }
+
+    // DELETE /api/gyms/21 - deletes gym with id=21
+    // only need the ID, no request body is needed
+    @DeleteMapping("/{id}")
+    public void deleteGym(@PathVariable Long id) {
+        gymRepository.deleteById(id);     // removes gym from the database
     }
 
    
