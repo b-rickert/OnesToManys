@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
+import jakarta.validation.Valid;
 
 
 import java.util.List;
@@ -55,14 +56,14 @@ public class GymController {
     // -H "Content-Type: application/json" \
     // -d '{"name":"Quick Gym","city":"Newark","state":"DE"}' | jq
     @PostMapping
-    public Gym creatGym(@RequestBody Gym gym) {
+    public Gym creatGym(@Valid @RequestBody Gym gym) {
         return gymRepository.save(gym);
     }
 
     // PUT api/gyms/21 - updates gym with id=21
     // takes the new gym data from the request body and saves it
     @PutMapping("/{id}")
-    public Gym updateGym(@PathVariable Long id, @RequestBody Gym gym) {
+    public Gym updateGym(@PathVariable Long id, @Valid @RequestBody Gym gym) {
         gym.setId(id);   // makes sure we are updating the correct gym ID
         return gymRepository.save(gym);      // save() works for both create AND update
     }

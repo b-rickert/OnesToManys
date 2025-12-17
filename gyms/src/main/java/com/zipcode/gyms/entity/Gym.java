@@ -3,6 +3,8 @@ package com.zipcode.gyms.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.math.BigDecimal;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 
 // Gym entity maps to the "gym" table in the database
@@ -17,6 +19,7 @@ public class Gym {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Gym name is required")
     @Column(nullable = false, length = 100)
     private String name;
 

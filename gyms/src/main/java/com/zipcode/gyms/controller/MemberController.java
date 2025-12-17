@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.server.ResponseStatusException;
+import org.springframework.http.HttpStatus;
 
 import java.util.List;
 
@@ -41,7 +44,7 @@ public class MemberController {
     // GET /api/members/995 - returns single member with id=995
     @GetMapping("/{id}")
     public Member getMemberById(@PathVariable Long id) {
-        return memberRepository.findById(id).orElse(null);
+        return memberRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Member not found"));
     }
 
     // PUT /api/members/995 - updates member with id=995
@@ -57,7 +60,7 @@ public class MemberController {
         memberRepository.deleteById(id);
     }
 
-    
+
 
 
 
