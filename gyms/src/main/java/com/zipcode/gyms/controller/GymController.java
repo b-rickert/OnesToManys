@@ -6,6 +6,9 @@ import com.zipcode.gyms.repository.GymRepository;
 import com.zipcode.gyms.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+import org.springframework.http.HttpStatus;
+
 
 import java.util.List;
 
@@ -36,7 +39,7 @@ public class GymController {
     @GetMapping("/{id}")
     public Gym getGymById(@PathVariable Long id) {
         // findById returns an Optional<Gym>, orElse(null) gives me null if user searches wrong/unlisted gym ID #
-        return gymRepository.findById(id).orElse(null);
+        return gymRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Gym not found"));
     }
 
     // GET api/gyms/1/members and returns all members for gym 1 with id = 1
