@@ -18,3 +18,15 @@ async function getAllMembers() {
     const response = await fetch(`${API_BASE_URL}/members`);
     return await response.json();
 }
+
+// Create a new gym
+async function createGym(gymData) {
+    const response = await fetch(`${API_BASE_URL}/gyms`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(gymData)
+    });
+    return await response.json();
+}
