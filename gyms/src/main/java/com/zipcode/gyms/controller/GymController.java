@@ -18,6 +18,7 @@ import java.util.List;
 
 // all endpoints listed in this class start with /api/gyms
 @RequestMapping("/api/gyms")
+@CrossOrigin()
 public class GymController {
 
     // Autowired means Spring auto-wires (injects) the repository so I can use it
