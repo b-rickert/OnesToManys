@@ -38,7 +38,7 @@
                 </div>
                 
                 <!-- Gym List -->
-                <div v-if="!showAddGymForm" id="gym-list">
+                <div v-if="!showAddGymForm && !editingGym" id="gym-list">
                     <div v-for="gym in gyms" :key="gym.id" class="gym-card" @click="loadMembers(gym.id, gym.name)">
                         <h3>{{ gym.name }}</h3>
                         <p><strong>ID: {{ gym.id }}</strong></p>
@@ -82,7 +82,7 @@
                 <p>{{ selectedGymName }}</p>
                 
                 <!-- Member List -->
-                <div v-if="!showAddMemberForm" id="member-list">
+                <div v-if="!showAddMemberForm && !editingMember" id="member-list">
                     <div v-for="member in members" :key="member.id" class="member-card">
                         <h3>{{ member.firstName }} {{ member.lastName }}</h3>
                         <p>Email: {{ member.email || 'N/A' }}</p>
@@ -95,8 +95,57 @@
                     </div>
                 </div>
             </section>
+        </div> <!-- container closes -->
+        
+        <!-- Edit Gym Section -->
+        <div v-if="editingGym" id="edit-gym-section">
+            <div class="container">
+                <h2>Edit Gym</h2>
+                <button @click="cancelEditGym" class="toggle-btn">← Back to Gyms</button>
+                
+                <div class="form-container">
+                    <form @submit.prevent="updateGym">
+                        <input v-model="editingGym.name" type="text" placeholder="Gym Name *" required>
+                        <input v-model="editingGym.address" type="text" placeholder="Address">
+                        <input v-model="editingGym.city" type="text" placeholder="City">
+                        <input v-model="editingGym.state" type="text" placeholder="State" maxlength="2">
+                        <input v-model="editingGym.phoneNumber" type="text" placeholder="Phone">
+                        <input v-model="editingGym.operatingHours" type="text" placeholder="Hours">
+                        <input v-model.number="editingGym.numberOfEquipment" type="number" placeholder="Equipment">
+                        <input v-model="editingGym.gymType" type="text" placeholder="Type">
+                        <input v-model.number="editingGym.monthlyRate" type="number" step="0.01" placeholder="Rate">
+                        <button type="submit">Update Gym</button>
+                    </form>
+                </div>
+            </div>
         </div>
-    </div>
+        
+        <!-- Edit Member Section -->
+        <div v-if="editingMember" id="edit-member-section">
+            <div class="container">
+                <h2>Edit Member</h2>
+                <button @click="cancelEditMember" class="toggle-btn">← Back to Members</button>
+                
+                <div class="form-container">
+                    <form @submit.prevent="updateMember">
+                        <input v-model.number="editingMember.gymId" type="number" placeholder="Gym ID *" required>
+                        <input v-model="editingMember.firstName" type="text" placeholder="First Name *" required>
+                        <input v-model="editingMember.lastName" type="text" placeholder="Last Name *" required>
+                        <input v-model="editingMember.email" type="email" placeholder="Email">
+                        <input v-model="editingMember.phoneNumber" type="text" placeholder="Phone">
+                        <input v-model="editingMember.dateOfBirth" type="date" required>
+                        <input v-model="editingMember.joinDate" type="date" required>
+                        <input v-model="editingMember.membershipType" type="text" placeholder="Type *" required>
+                        <input v-model="editingMember.fitnessGoal" type="text" placeholder="Goal">
+                        <input v-model="editingMember.membershipStatus" type="text" placeholder="Status *" required>
+                        <input v-model="editingMember.favoriteEquipment" type="text" placeholder="Equipment">
+                        <button type="submit">Update Member</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+    </div> <!-- app closes -->
     
     <script src="app.js"></script>
 </body>

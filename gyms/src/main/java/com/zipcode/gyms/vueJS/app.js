@@ -9,6 +9,8 @@ createApp({
             selectedGymId: null,
             showAddGymForm: false,
             showAddMemberForm: false,
+            editingGym: null,
+            editingMember: null,
             newGym: {
                 name: '',
                 address: '',
@@ -74,10 +76,34 @@ createApp({
             }
         },
         
-        // Edit gym (placeholder - we'll add edit forms later if needed)
+        // Edit gym - show edit form
         editGym(gym) {
-            alert(`Edit functionality: Would edit ${gym.name}`);
-            // For now, just show an alert. Full edit can be added like vanilla JS
+            this.editingGym = { ...gym };
+        },
+        
+        // Update gym
+        async updateGym() {
+            try {
+                const response = await fetch(`${this.apiBaseUrl}/gyms/${this.editingGym.id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(this.editingGym)
+                });
+                
+                if (response.ok) {
+                    alert('Gym updated successfully!');
+                    this.editingGym = null;
+                    await this.fetchGyms();
+                }
+            } catch (error) {
+                console.error('Error updating gym:', error);
+                alert('Failed to update gym');
+            }
+        },
+        
+        // Cancel edit gym
+        cancelEditGym() {
+            this.editingGym = null;
         },
         
         // Delete a gym
@@ -137,9 +163,39 @@ createApp({
             }
         },
         
-        // Edit member (placeholder)
+        // Edit member - show edit form
         editMember(member) {
-            alert(`Edit functionality: Would edit ${member.firstName} ${member.lastName}`);
+            this.editingMember = { ...member };
+        },
+        
+        // Update member
+        async updateMember() {
+            try {
+                const response = await fetch(`${this.apiBaseUrl}/members/${this.editingMember.id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(this.editingMember)
+                });
+                
+                if (response.ok) {
+                    alert('Member updated successfully!');
+                    const gymId = this.editingMember.gymId;
+                    this.editingMember = null;
+                    
+                    // Reload members for current gym
+                    if (this.selectedGymId) {
+                        await this.loadMembers(this.selectedGymId, this.selectedGymName.replace('Members of ', ''));
+                    }
+                }
+            } catch (error) {
+                console.error('Error updating member:', error);
+                alert('Failed to update member');
+            }
+        },
+        
+        // Cancel edit member
+        cancelEditMember() {
+            this.editingMember = null;
         },
         
         // Delete a member
