@@ -39,34 +39,82 @@
 
 <!-- Member List Section -->
 <section id="member-section">
-    <h2>Members</h2>
-    
-    <!-- Toggle Button -->
-    <button id="toggle-member-form" class="toggle-btn">+ Add New Member</button>
-    
-    <!-- Add Member Form (hidden by default) -->
-    <div class="form-container" id="member-form-container" style="display: none;">
-        <h3>Add New Member</h3>
-        <form id="add-member-form">
-            <input type="number" id="member-gym-id" placeholder="Gym ID *" required>
-            <input type="text" id="member-first-name" placeholder="First Name *" required>
-            <input type="text" id="member-last-name" placeholder="Last Name *" required>
-            <input type="email" id="member-email" placeholder="Email">
-            <input type="text" id="member-phone" placeholder="Phone Number">
-            <input type="date" id="member-dob" placeholder="Date of Birth *" required>
-            <input type="date" id="member-join-date" placeholder="Join Date *" required>
-            <input type="text" id="member-type" placeholder="Membership Type *" required>
-            <input type="text" id="member-goal" placeholder="Fitness Goal">
-            <input type="text" id="member-status" placeholder="Status *" required>
-            <input type="text" id="member-equipment" placeholder="Favorite Equipment">
-            <button type="submit">Add Member</button>
-        </form>
-    </div>
-    
-    <p id="selected-gym-name">Select a gym to view members</p>
-    <div id="member-list"></div>
+<h2>Members</h2>
+
+<!-- Toggle Button -->
+<button id="toggle-member-form" class="toggle-btn">+ Add New Member</button>
+
+<!-- Add Member Form (hidden by default) -->
+<div class="form-container" id="member-form-container" style="display: none;">
+<h3>Add New Member</h3>
+<form id="add-member-form">
+<input type="number" id="member-gym-id" placeholder="Gym ID *" required>
+<input type="text" id="member-first-name" placeholder="First Name *" required>
+<input type="text" id="member-last-name" placeholder="Last Name *" required>
+<input type="email" id="member-email" placeholder="Email">
+<input type="text" id="member-phone" placeholder="Phone Number">
+<input type="date" id="member-dob" placeholder="Date of Birth *" required>
+<input type="date" id="member-join-date" placeholder="Join Date *" required>
+<input type="text" id="member-type" placeholder="Membership Type *" required>
+<input type="text" id="member-goal" placeholder="Fitness Goal">
+<input type="text" id="member-status" placeholder="Status *" required>
+<input type="text" id="member-equipment" placeholder="Favorite Equipment">
+<button type="submit">Add Member</button>
+</form>
+</div>
+
+<p id="selected-gym-name">Select a gym to view members</p>
+<div id="member-list"></div>
 </section>
 
+</div>  <!-- MAIN CONTAINER ENDS HERE -->
+
+<!-- Edit Gym Section (hidden by default) - MOVED OUTSIDE CONTAINER -->
+<div id="edit-gym-section" style="display: none;">
+    <div class="container">
+        <h2>Edit Gym</h2>
+        <button id="cancel-edit-gym" class="toggle-btn">← Back to Gyms</button>
+        
+        <div class="form-container">
+            <form id="edit-gym-form">
+                <input type="text" id="edit-gym-name" placeholder="Gym Name *" required>
+                <input type="text" id="edit-gym-address" placeholder="Address">
+                <input type="text" id="edit-gym-city" placeholder="City">
+                <input type="text" id="edit-gym-state" placeholder="State (2 letters)" maxlength="2">
+                <input type="text" id="edit-gym-phone" placeholder="Phone Number">
+                <input type="text" id="edit-gym-hours" placeholder="Operating Hours">
+                <input type="number" id="edit-gym-equipment" placeholder="Number of Equipment">
+                <input type="text" id="edit-gym-type" placeholder="Gym Type">
+                <input type="number" id="edit-gym-rate" placeholder="Monthly Rate" step="0.01">
+                <button type="submit">Update Gym</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Member Section (hidden by default) - MOVED OUTSIDE CONTAINER -->
+<div id="edit-member-section" style="display: none;">
+    <div class="container">
+        <h2>Edit Member</h2>
+        <button id="cancel-edit-member" class="toggle-btn">← Back to Members</button>
+        
+        <div class="form-container">
+            <form id="edit-member-form">
+                <input type="number" id="edit-member-gym-id" placeholder="Gym ID *" required>
+                <input type="text" id="edit-member-first-name" placeholder="First Name *" required>
+                <input type="text" id="edit-member-last-name" placeholder="Last Name *" required>
+                <input type="email" id="edit-member-email" placeholder="Email">
+                <input type="text" id="edit-member-phone" placeholder="Phone Number">
+                <input type="date" id="edit-member-dob" placeholder="Date of Birth *" required>
+                <input type="date" id="edit-member-join-date" placeholder="Join Date *" required>
+                <input type="text" id="edit-member-type" placeholder="Membership Type *" required>
+                <input type="text" id="edit-member-goal" placeholder="Fitness Goal">
+                <input type="text" id="edit-member-status" placeholder="Status *" required>
+                <input type="text" id="edit-member-equipment" placeholder="Favorite Equipment">
+                <button type="submit">Update Member</button>
+            </form>
+        </div>
+    </div>
 </div>
 
 <!-- Link JavaScript files -->
