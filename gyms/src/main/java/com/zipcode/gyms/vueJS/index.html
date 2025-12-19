@@ -1,18 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Gym Manager - Vue.js</title>
-        <link rel="stylesheet" href="styles.css">
-        <!-- Vue 3 CDN -->
-         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    </head>
-    <body>
-        <div id="app">
-            <div class="container">
-                <h1>Gym management System (Vue.js)</h1>
-            </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Manager - Vue.js</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Vue 3 CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <h1>Gym Management System (Vue.js)</h1>
+            
+            <!-- Gym Section -->
+            <section>
+                <h2>Gyms</h2>
+                <button @click="showAddGymForm = !showAddGymForm" class="toggle-btn">
+                    {{ showAddGymForm ? '- Hide Form' : '+ Add New Gym' }}
+                </button>
+                
+                <!-- Add Gym Form -->
+                <div v-if="showAddGymForm" class="form-container">
+                    <h3>Add New Gym</h3>
+                    <form @submit.prevent="createGym">
+                        <input v-model="newGym.name" type="text" placeholder="Gym Name *" required>
+                        <input v-model="newGym.address" type="text" placeholder="Address">
+                        <input v-model="newGym.city" type="text" placeholder="City">
+                        <input v-model="newGym.state" type="text" placeholder="State" maxlength="2">
+                        <input v-model="newGym.phoneNumber" type="text" placeholder="Phone">
+                        <input v-model="newGym.operatingHours" type="text" placeholder="Hours">
+                        <input v-model.number="newGym.numberOfEquipment" type="number" placeholder="Equipment">
+                        <input v-model="newGym.gymType" type="text" placeholder="Type">
+                        <input v-model.number="newGym.monthlyRate" type="number" step="0.01" placeholder="Rate">
+                        <button type="submit">Add Gym</button>
+                    </form>
+                </div>
+                
+                <!-- Gym List -->
+                <div v-if="!showAddGymForm" id="gym-list">
+                    <div v-for="gym in gyms" :key="gym.id" class="gym-card" @click="loadMembers(gym.id, gym.name)">
+                        <h3>{{ gym.name }}</h3>
+                        <p><strong>ID: {{ gym.id }}</strong></p>
+                        <p>{{ gym.city }}, {{ gym.state }}</p>
+                        <p>Type: {{ gym.gymType || 'N/A' }}</p>
+                        <p>Rate: ${{ gym.monthlyRate || 'N/A' }}/month</p>
+                        <div class="card-actions" @click.stop>
+                            <button class="edit-btn" @click="editGym(gym)">Edit</button>
+                            <button class="delete-btn" @click="deleteGym(gym.id, gym.name)">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Members Section -->
+            <section>
+                <h2>Members</h2>
+                <button @click="showAddMemberForm = !showAddMemberForm" class="toggle-btn">
+                    {{ showAddMemberForm ? '- Hide Form' : '+ Add New Member' }}
+                </button>
+                
+                <!-- Add Member Form -->
+                <div v-if="showAddMemberForm" class="form-container">
+                    <h3>Add New Member</h3>
+                    <form @submit.prevent="createMember">
+                        <input v-model.number="newMember.gymId" type="number" placeholder="Gym ID *" required>
+                        <input v-model="newMember.firstName" type="text" placeholder="First Name *" required>
+                        <input v-model="newMember.lastName" type="text" placeholder="Last Name *" required>
+                        <input v-model="newMember.email" type="email" placeholder="Email">
+                        <input v-model="newMember.phoneNumber" type="text" placeholder="Phone">
+                        <input v-model="newMember.dateOfBirth" type="date" required>
+                        <input v-model="newMember.joinDate" type="date" required>
+                        <input v-model="newMember.membershipType" type="text" placeholder="Membership Type *" required>
+                        <input v-model="newMember.fitnessGoal" type="text" placeholder="Fitness Goal">
+                        <input v-model="newMember.membershipStatus" type="text" placeholder="Status *" required>
+                        <input v-model="newMember.favoriteEquipment" type="text" placeholder="Favorite Equipment">
+                        <button type="submit">Add Member</button>
+                    </form>
+                </div>
+                
+                <p>{{ selectedGymName }}</p>
+                
+                <!-- Member List -->
+                <div v-if="!showAddMemberForm" id="member-list">
+                    <div v-for="member in members" :key="member.id" class="member-card">
+                        <h3>{{ member.firstName }} {{ member.lastName }}</h3>
+                        <p>Email: {{ member.email || 'N/A' }}</p>
+                        <p>Type: {{ member.membershipType }}</p>
+                        <p>Status: {{ member.membershipStatus }}</p>
+                        <div class="card-actions">
+                            <button class="edit-btn" @click="editMember(member)">Edit</button>
+                            <button class="delete-btn" @click="deleteMember(member.id, member.firstName)">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
-    </body>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
 </html>
