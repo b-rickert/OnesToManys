@@ -30,3 +30,15 @@ async function createGym(gymData) {
     });
     return await response.json();
 }
+
+// Create new member
+async function createMember(memberData) {
+    const response = await fetch(`${API_BASE_URL}/members`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(memberData)
+    });
+    return await response.json();
+}

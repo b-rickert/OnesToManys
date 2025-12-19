@@ -129,3 +129,21 @@ form button {
 form button:hover {
     background-color: #cc0000;
 }
+
+/* Toggle button styling */
+.toggle-btn {
+    padding: 10px 20px;
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.3s;
+}
+
+.toggle-btn:hover {
+    background-color: #cc0000;
+}

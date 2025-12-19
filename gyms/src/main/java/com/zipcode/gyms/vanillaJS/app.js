@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     // Handle gym form submission
     document.getElementById('add-gym-form').addEventListener('submit', async (e) => {
-        e.preventDefault(); // Prevent page reload
+        e.preventDefault();
         
         const gymData = {
             name: document.getElementById('gym-name').value,
@@ -35,13 +35,57 @@ document.addEventListener('DOMContentLoaded', async () => {
         try {
             await createGym(gymData);
             alert('Gym added successfully!');
-            document.getElementById('add-gym-form').reset(); // Clear form
+            document.getElementById('add-gym-form').reset();
             document.getElementById('gym-form-container').style.display = 'none';
             document.getElementById('toggle-gym-form').textContent = '+ Add New Gym';
-            await loadGyms(); // Reload gym list
+            await loadGyms();
         } catch (error) {
             console.error('Error creating gym:', error);
             alert('Failed to add gym');
+        }
+    });
+    
+    // Toggle member form visibility
+    document.getElementById('toggle-member-form').addEventListener('click', () => {
+        const formContainer = document.getElementById('member-form-container');
+        const toggleBtn = document.getElementById('toggle-member-form');
+        
+        if (formContainer.style.display === 'none') {
+            formContainer.style.display = 'block';
+            toggleBtn.textContent = '- Hide Form';
+        } else {
+            formContainer.style.display = 'none';
+            toggleBtn.textContent = '+ Add New Member';
+        }
+    });
+    
+    // Handle member form submission
+    document.getElementById('add-member-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const memberData = {
+            gymId: parseInt(document.getElementById('member-gym-id').value),
+            firstName: document.getElementById('member-first-name').value,
+            lastName: document.getElementById('member-last-name').value,
+            email: document.getElementById('member-email').value,
+            phoneNumber: document.getElementById('member-phone').value,
+            dateOfBirth: document.getElementById('member-dob').value,
+            joinDate: document.getElementById('member-join-date').value,
+            membershipType: document.getElementById('member-type').value,
+            fitnessGoal: document.getElementById('member-goal').value,
+            membershipStatus: document.getElementById('member-status').value,
+            favoriteEquipment: document.getElementById('member-equipment').value
+        };
+        
+        try {
+            await createMember(memberData);
+            alert('Member added successfully!');
+            document.getElementById('add-member-form').reset();
+            document.getElementById('member-form-container').style.display = 'none';
+            document.getElementById('toggle-member-form').textContent = '+ Add New Member';
+        } catch (error) {
+            console.error('Error creating member:', error);
+            alert('Failed to add member');
         }
     });
 });
