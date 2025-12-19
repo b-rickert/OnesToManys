@@ -42,3 +42,43 @@ async function createMember(memberData) {
     });
     return await response.json();
 }
+
+// Update an existing gym
+async function updateGym(id, gymData) {
+    const response = await fetch(`${API_BASE_URL}/gyms/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(gymData)
+    });
+    return await response.json();
+}
+
+// Delete a gym
+async function deleteGym(id) {
+    const response = await fetch(`${API_BASE_URL}/gyms/${id}`, {
+        method: 'DELETE'
+    });
+    return response.ok;
+}
+
+// Update an existing member
+async function updateMember(id, memberData) {
+    const response = await fetch(`${API_BASE_URL}/members/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(memberData)
+    });
+    return await response.json();
+}
+
+// Delete a member
+async function deleteMember(id) {
+    const response = await fetch(`${API_BASE_URL}/members/${id}`, {
+        method: 'DELETE'
+    });
+    return response.ok;
+}
